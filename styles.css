@@ -1,0 +1,164 @@
+* {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+}
+
+.group:after {
+     content: "";
+     display: table;
+     clear: both;
+}
+
+h1 {
+     text-align: center;
+     font-size: 60px;
+     margin-bottom: 90px;
+}
+
+p {
+     font-size: 24px;
+}
+
+.letters-container {
+     position: relative;
+     top: 50%;
+     transform: translateY(-50%);
+}
+
+.letters {
+     display: inline-block;
+     width: 30px;
+     height: 30px;
+     margin-right: 2px;
+     text-align: center;
+}
+
+.letters:last-child {
+     margin-right: 0;
+}
+
+.wrapper {
+     width: 800px;
+     margin: 0 auto;
+     background-color: aqua;
+     padding: 20px;
+     position: relative;
+}
+
+.attemps-left {
+     width: 100px;
+     height: 100px;
+     background-color: yellow;
+     border-radius: 100px;
+     position: absolute;
+     top: -50px;
+     left: 50%;
+     transform: translateX(-50%);
+     text-align: center;
+     border: solid 3px red;
+}
+
+.attemps-left__number {
+     display: none;
+     position: relative;
+     top: 50%;
+     transform: translateY(-50%);
+     font-size: 55px;
+}
+
+.wrapper__float-left, .wrapper__float-right {
+     width: 50%;
+     height: 250px;
+}
+
+.wrapper__float-left {
+     float: left;
+     background-color: lightgreen;
+     text-align: center;
+     padding: 20px;
+}
+
+.wrapper__float-right {
+     float: right;
+     background-color: orange;
+}
+
+.hangman {
+     position: relative;
+     padding: 20px;
+}
+
+.hangman__hangman-head, .hangman__hangman-left-arm, .hangman__hangman-body, .hangman__hangman-right-arm, .hangman__hangman-left-leg, .hangman__hangman-right-leg {
+     background-color: black;
+}
+
+.hangman__hangman-head {
+     height: 50px;
+     width: 50px;
+     border-top-left-radius: 50px;
+     border-top-right-radius: 50px;
+     border-bottom-left-radius: 50px;
+     border-bottom-right-radius: 50px;
+     position: relative;
+     left: 50%;
+     transform: translateX(-50%);
+}
+
+.hangman__hangman-left-arm, .hangman__hangman-right-arm, .hangman__hangman-left-leg, .hangman__hangman-right-leg {
+     height: 20px;
+     width: 100px;
+}
+
+.hangman__hangman-left-arm {
+     position: relative;
+     left: 50%;
+     transform: translateX(-100%);
+}
+
+.hangman__hangman-right-arm {
+     position: absolute;
+     top: 70px;
+     left: 50%;
+}
+
+.hangman__hangman-body {
+     height: 100px;
+     width: 20px;
+     position: relative;
+     left: 50%;
+     transform: translateX(-50%);
+}
+
+.hangman__hangman-left-leg {
+     position: relative;
+     left: 50%;
+     transform: translateX(-100%);
+}
+
+.hangman__hangman-right-leg {
+     position: absolute;
+     top: 190px;
+     left: 50%;
+}
+
+.word {
+     display: inline-block;
+     width: 35px;
+     height: 35px;
+}
+
+.start {
+     padding: 10px 20px;
+     background-color: orange;
+     border: none;
+     font-size: 20px;
+     margin-top: 20px;
+     position: relative;
+     left: 50%;
+     transform: translateX(-50%);
+}
+
+.start:hover {
+     cursor: pointer;
+}
