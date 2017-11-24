@@ -8,7 +8,7 @@ var hangman = -1;
 
 document.querySelector('.start').addEventListener('click', function() {
      if (gameIsRuning === false) {
-          alert(randomWord);
+          //alert(randomWord);
           document.querySelector('.hangman__hangman-0').style.display = 'none';
           document.querySelector('.hangman__hangman-1').style.display = 'none';
           document.querySelector('.hangman__hangman-2').style.display = 'none';
