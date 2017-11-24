@@ -38,6 +38,10 @@ p {
      margin-right: 0;
 }
 
+.main-letter, .main-letter-title {
+     display: none;
+}
+
 .wrapper {
      width: 800px;
      margin: 0 auto;
@@ -89,11 +93,11 @@ p {
      padding: 20px;
 }
 
-.hangman__hangman-head, .hangman__hangman-left-arm, .hangman__hangman-body, .hangman__hangman-right-arm, .hangman__hangman-left-leg, .hangman__hangman-right-leg {
+.hangman__hangman-0, .hangman__hangman-1, .hangman__hangman-2, .hangman__hangman-3, .hangman__hangman-4, .hangman__hangman-5 {
      background-color: black;
 }
 
-.hangman__hangman-head {
+.hangman__hangman-0 {
      height: 50px;
      width: 50px;
      border-top-left-radius: 50px;
@@ -105,24 +109,24 @@ p {
      transform: translateX(-50%);
 }
 
-.hangman__hangman-left-arm, .hangman__hangman-right-arm, .hangman__hangman-left-leg, .hangman__hangman-right-leg {
+.hangman__hangman-1, .hangman__hangman-3, .hangman__hangman-4, .hangman__hangman-5 {
      height: 20px;
      width: 100px;
 }
 
-.hangman__hangman-left-arm {
+.hangman__hangman-1 {
      position: relative;
      left: 50%;
      transform: translateX(-100%);
 }
 
-.hangman__hangman-right-arm {
+.hangman__hangman-3 {
      position: absolute;
      top: 70px;
      left: 50%;
 }
 
-.hangman__hangman-body {
+.hangman__hangman-2 {
      height: 100px;
      width: 20px;
      position: relative;
@@ -130,13 +134,13 @@ p {
      transform: translateX(-50%);
 }
 
-.hangman__hangman-left-leg {
+.hangman__hangman-4 {
      position: relative;
      left: 50%;
      transform: translateX(-100%);
 }
 
-.hangman__hangman-right-leg {
+.hangman__hangman-5 {
      position: absolute;
      top: 190px;
      left: 50%;
