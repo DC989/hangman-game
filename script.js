@@ -30,9 +30,6 @@ document.querySelector('.start').addEventListener('click', function() {
 
           document.querySelector('.letters-container').innerHTML = listOfInputs;
 
-          alert(document.querySelector('.letters-container').innerHTML);
-
-
           /*
           for (var e = 0; e < randomWord.length; e++) {
                document.querySelector('.letter-' + e).addEventListener('change', function() {
@@ -93,7 +90,7 @@ document.querySelector('.main-letter').addEventListener('change', function() {
                }
 
                if (score === randomWord.length) {
-                    alert('Congrats! You won!');
+                    alert('Congrats! You won! Proceed to the next round.');
                     score = 0;
                     newRound();
                }
@@ -122,7 +119,7 @@ function newRound() {
           listOfInputs = '';
           document.querySelector('.letters-container').innerHTML = listOfInputs;
 
-          document.querySelector('.hangman__hangman-0').style.display = 'none';
+          /*document.querySelector('.hangman__hangman-0').style.display = 'none';
           document.querySelector('.hangman__hangman-1').style.display = 'none';
           document.querySelector('.hangman__hangman-2').style.display = 'none';
           document.querySelector('.hangman__hangman-3').style.display = 'none';
@@ -133,7 +130,7 @@ function newRound() {
           document.querySelector('.attemps-left__number').style.display = 'block';
 
           document.querySelector('.main-letter').style.display = 'inline-block';
-          document.querySelector('.main-letter-title').style.display = 'inline-block';
+          document.querySelector('.main-letter-title').style.display = 'inline-block';*/
 
           for (var i = 0; i < randomWord.length; i++) {
                listOfInputs += '<input class="letters letter-' + i + '" type="text" disabled/>';
