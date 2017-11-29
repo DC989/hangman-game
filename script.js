@@ -144,3 +144,9 @@ function newRound() {
 
      }
 }
+//TODO Napraviti nov screen koji ce se prikazivati pre ovog koji trenutno imas. Na tom screenu ces imati samo jedan input gde ces dodavati nove reci u niz.
+// Klikom na Play dugme prelazis na screen koji sada imas i sve funkcionise na isti nacin, samo sa novim recima. Pored broja promasaja, brojaces i poene na sledeci nacin:
+// za svaki pogodjeni samoglasnik: + 1 poen
+// za svaki pogodjeni suglasnik: + 2 poena
+// promasaj: - 0.5p
+//Broj poena prikazi gde god, stil nije toliko vazan. Broj poena se odnosi na celu igru, ne samo na odredjenu rec.
