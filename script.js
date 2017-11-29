@@ -7,10 +7,16 @@ var gameIsRuning = false;
 var hangman = -1;
 var score = 0;
 
+
+
 document.querySelector('.start').addEventListener('click', function() {
      if (gameIsRuning === false) {
           //alert(randomWord);
           gameIsRuning = true;
+
+          //document.querySelector().style.display = '';
+          //document.querySelector().style.display = '';
+
           document.querySelector('.hangman__hangman-0').style.display = 'none';
           document.querySelector('.hangman__hangman-1').style.display = 'none';
           document.querySelector('.hangman__hangman-2').style.display = 'none';
@@ -60,10 +66,17 @@ document.querySelector('.start').addEventListener('click', function() {
      }
 });
 
+
+
 document.querySelector('.main-letter').addEventListener('change', function() {
 
 
      if (attemptsLeft > 0) {
+
+          if (this.value === '') {
+               alert('You forgot to enter a letter!');
+               return;
+          }
 
           if (randomWord.toLowerCase().includes(this.value.toLocaleLowerCase())) {
 
@@ -108,6 +121,33 @@ document.querySelector('.main-letter').addEventListener('change', function() {
      }
 });
 
+
+
+document.querySelector('.btn-add-word').addEventListener('click', function() {
+     var customWord = document.querySelector('.custom-words').value;
+     var arrContainsWord = (words.indexOf(customWord) > -1);
+     if (customWord !== '') {
+          //check if words array already has entered words
+          if (!(arrContainsWord)) {
+               words.push(customWord);
+               alert('Awesome! Your word is added.');
+          } else {
+               alert('You already have this word! Enter some other word.');
+          }
+     } else {
+          alert('You can\'t add empty string! Enter some word.');
+     }
+});
+
+
+
+document.querySelector('.btn-play').addEventListener('click', function() {
+     document.querySelector('.words-wrapper').style.display = 'none';
+     document.querySelector('.wrapper').style.display = 'block';
+});
+
+
+
 function newRound() {
 
      words.splice(randomNumber, 1);
@@ -144,9 +184,10 @@ function newRound() {
 
      }
 }
-//TODO Napraviti nov screen koji ce se prikazivati pre ovog koji trenutno imas. Na tom screenu ces imati samo jedan input gde ces dodavati nove reci u niz.
+// TO DO
+// Napraviti nov screen koji ce se prikazivati pre ovog koji trenutno imas. Na tom screenu ces imati samo jedan input gde ces dodavati nove reci u niz.
 // Klikom na Play dugme prelazis na screen koji sada imas i sve funkcionise na isti nacin, samo sa novim recima. Pored broja promasaja, brojaces i poene na sledeci nacin:
 // za svaki pogodjeni samoglasnik: + 1 poen
 // za svaki pogodjeni suglasnik: + 2 poena
 // promasaj: - 0.5p
-//Broj poena prikazi gde god, stil nije toliko vazan. Broj poena se odnosi na celu igru, ne samo na odredjenu rec.
+// Broj poena prikazi gde god, stil nije toliko vazan. Broj poena se odnosi na celu igru, ne samo na odredjenu rec.
