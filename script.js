@@ -5,7 +5,10 @@ var attemptsLeft = 6;
 var listOfInputs = '';
 var gameIsRuning = false;
 var hangman = -1;
+var numCharacterInWord = 0;
 var score = 0;
+var samoglasnici = ['a', 'e', 'i', 'o', 'u'];
+var suglasnici = ['b', 'c', 'č', 'ć', 'd', 'dž', 'đ', 'f', 'g', 'h', 'j', 'k', 'l', 'lj', 'm', 'n', 'nj', 'p', 'r', 's', 'š', 't', 'v', 'z', 'ž'];
 
 
 
@@ -73,43 +76,58 @@ document.querySelector('.main-letter').addEventListener('change', function() {
 
      if (attemptsLeft > 0) {
 
+          var randomWordLowerCase = randomWord.toLowerCase();
+          var characterInRandomWord = randomWordLowerCase.split(this.value);
+          var containsNumber = characterInRandomWord.length - 1;
+          var enteredCharacter = this.value.toLowerCase();
+
           if (this.value === '') {
                alert('You forgot to enter a letter!');
                return;
           }
 
-          if (randomWord.toLowerCase().includes(this.value.toLocaleLowerCase())) {
-
-               //alert('Correct! This word contains this letter.');
+          if (randomWord.toLowerCase().includes(enteredCharacter)) {
 
                for (var i = 0; i < randomWord.length; i++) {
-                    if (this.value.toLowerCase() === randomWord.charAt(i).toLowerCase()) {
+                    if (enteredCharacter === randomWord.charAt(i).toLowerCase()) {
                          document.querySelector('.letter-' + i).value = this.value.toUpperCase();
                     }
                }
 
-               // check how many times randomWord contains entered character
-               var ourWord = randomWord.toLowerCase();
-               var containsNumber = ourWord.split(this.value).length - 1;
+               // samoglasnici.indexOf(enteredCharacter) > -1
+               if (samoglasnici.indexOf(enteredCharacter) > -1) {
+                    score += 1;
+                    //alert(score);
+               }
+
+               if (suglasnici.indexOf(enteredCharacter) > -1) {
+                    score += 2;
+                    //alert(score);
+               }
+
+               document.querySelector('.score__amount').innerHTML = score;
 
                if (containsNumber === 1) {
                     alert('This word contains ' + this.value.toUpperCase() + ' character once.');
-                    score++;
-                    alert('Your score is ' + score);
+                    numCharacterInWord++;
+                    //alert('Your score is ' + numCharacterInWord);
                } else {
                     alert('This word contains ' + this.value.toUpperCase() + ' character ' + containsNumber + ' times.');
-                    score += containsNumber;
-                    alert('Your score is ' + score);
+                    numCharacterInWord += containsNumber;
+                    //alert('Your score is ' + numCharacterInWord);
                }
 
-               if (score === randomWord.length) {
-                    alert('Congrats! You won! Proceed to the next round.');
-                    score = 0;
+               if (numCharacterInWord === randomWord.length) {
+                    alert('Congrats! You completed this word! Proceed to the next round.');
+                    numCharacterInWord = 0;
                     newRound();
                }
 
           } else {
                alert('Wrong! There is no such letter.');
+               score -= 1.5;
+               document.querySelector('.score__amount').innerHTML = score;
+               // alert('Your current score is ' + score);
                attemptsLeft--;
                hangman++;
                document.querySelector('.attemps-left__number').innerHTML = attemptsLeft;
@@ -118,6 +136,7 @@ document.querySelector('.main-letter').addEventListener('change', function() {
 
      } else {
           alert('You run out of attempts. Game Over!');
+          alert('Your score is ' + score);
      }
 });
 
@@ -125,14 +144,14 @@ document.querySelector('.main-letter').addEventListener('change', function() {
 
 document.querySelector('.btn-add-word').addEventListener('click', function() {
      var customWord = document.querySelector('.custom-words').value;
-     var arrContainsWord = (words.indexOf(customWord) > -1);
+     var arrContainsWord = words.indexOf(customWord) > -1;
      if (customWord !== '') {
           //check if words array already has entered words
           if (!(arrContainsWord)) {
                words.push(customWord);
-               alert('Awesome! Your word is added.');
+               alert('Awesome! Your word has been added.');
           } else {
-               alert('You already have this word! Enter some other word.');
+               alert('The Hangman Game already contains this word. Try different word.');
           }
      } else {
           alert('You can\'t add empty string! Enter some word.');
@@ -144,6 +163,8 @@ document.querySelector('.btn-add-word').addEventListener('click', function() {
 document.querySelector('.btn-play').addEventListener('click', function() {
      document.querySelector('.words-wrapper').style.display = 'none';
      document.querySelector('.wrapper').style.display = 'block';
+
+     document.querySelector('.score-wrapper').style.display = 'block';
 });
 
 

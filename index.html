@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+     <meta charset="utf-8" />
      <title>Hangman Game</title>
      <link href="styles.css" type="text/css" rel="stylesheet" />
      <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
@@ -9,27 +10,40 @@
 </head>
 
 <body>
-     <h1 class="animated">Hangman Game</h1>
+     <div class="container">
 
-     <div class="words-wrapper">
-          <input class="custom-words" type="text" required/>
-          <button class="btn-add-word" type="button">Add Word</button>
-          <button class="btn-play" type="button">Play</button>
-     </div>
+          <h1 class="animated tada">Hangman Game</h1>
 
-     <div class="wrapper group">
-          <div class="attemps-left">
-               <p class="attemps-left__number">
-                    0
-               </p>
+          <div class="score-wrapper">
+               <h2 class="score-title">Score: </h2>
+
+               <div class="score">
+                    <p class="score__amount">
+                         0
+                    </p>
+               </div>
           </div>
 
-          <div class="wrapper__float-left">
-               <label class="main-letter-title">Type your letter here</label>
-               <input class="letters main-letter" type="text" maxlength="1" />
+          <div class="words-wrapper">
+               <input class="custom-words" type="text" placeholder="Enter some word..." required/>
+               <button class="btn-add-word" type="button">Add Word</button>
+               <button class="btn-play" type="button">Play</button>
+          </div>
 
-               <form class="letters-container">
-                    <!--
+          <div class="wrapper group">
+
+               <div class="attemps-left">
+                    <p class="attemps-left__number">
+                         0
+                    </p>
+               </div>
+
+               <div class="wrapper__float-left">
+                    <label class="main-letter-title">Type your letter here</label>
+                    <input class="letters main-letter" type="text" maxlength="1" />
+
+                    <form class="letters-container">
+                         <!--
                     <input class="letters letter-0" type="text" />
                     <input class="letters letter-1" type="text" />
                     <input class="letters letter-2" type="text" />
@@ -41,38 +55,39 @@
                     <input class="letters letter-8" type="text" />
                     <input class="letters letter-9" type="text" />
                     -->
-               </form>
-          </div>
+                    </form>
+               </div>
 
-          <div class="wrapper__float-right">
-               <div class="hangman">
-                    <div class="hangman__hangman-0">
+               <div class="wrapper__float-right">
+                    <div class="hangman">
+                         <div class="hangman__hangman-0">
 
-                    </div>
+                         </div>
 
-                    <div class="hangman__hangman-1">
+                         <div class="hangman__hangman-1">
 
-                    </div>
+                         </div>
 
-                    <div class="hangman__hangman-2">
+                         <div class="hangman__hangman-2">
 
-                    </div>
+                         </div>
 
-                    <div class="hangman__hangman-3">
+                         <div class="hangman__hangman-3">
 
-                    </div>
+                         </div>
 
-                    <div class="hangman__hangman-4">
+                         <div class="hangman__hangman-4">
 
-                    </div>
+                         </div>
 
-                    <div class="hangman__hangman-5">
+                         <div class="hangman__hangman-5">
 
+                         </div>
                     </div>
                </div>
-          </div>
 
-          <button class="btn-start" type="button">Start</button>
+               <button class="btn-start" type="button">Start</button>
+          </div>
      </div>
 
      <script src="script.js"></script>
