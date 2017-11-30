@@ -38,42 +38,12 @@ document.querySelector('.btn-start').addEventListener('click', function() {
           }
 
           document.querySelector('.letters-container').innerHTML = listOfInputs;
-
-          /*
-          for (var e = 0; e < randomWord.length; e++) {
-               document.querySelector('.letter-' + e).addEventListener('change', function() {
-                    switch (randomWord) {
-                         case 'Soccer':
-                              for (var z = 0; z < randomWord.length; z++) {
-                                   if (randomWord.charAt(z).toLocaleLowerCase() === this.value.toLocaleLowerCase()) {
-                                        alert('Correct!');
-                                   }
-                              }
-                              break;
-                         case 'Basketball':
-                              // code
-                              break;
-                         case 'Computer':
-                              // code
-                              break;
-                         case 'Science':
-                              // code
-                              break;
-                         case 'Mouse':
-                              // code
-                              break;
-                    }
-                    alert('Focus changed!');
-               });
-          }*/
      }
 });
 
 
 
 document.querySelector('.main-letter').addEventListener('change', function() {
-
-
      if (attemptsLeft > 0) {
 
           var randomWordLowerCase = randomWord.toLowerCase();
@@ -170,7 +140,6 @@ document.querySelector('.btn-play').addEventListener('click', function() {
 
 
 function newRound() {
-
      words.splice(randomNumber, 1);
      randomNumber = Math.floor(Math.random() * words.length);
      randomWord = words[randomNumber];
