@@ -4,6 +4,15 @@
      box-sizing: border-box;
 }
 
+body {
+     width: 100%;
+     height: 100vh;
+     background: radial-gradient(circle, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('BG.jpg') no-repeat left top;
+     background-size: cover;
+     font-family: 'Indie Flower', cursive;
+     overflow-x: hidden;
+}
+
 .group:after {
      content: "";
      display: table;
@@ -13,7 +22,10 @@
 h1 {
      text-align: center;
      font-size: 60px;
-     margin-bottom: 90px;
+     margin-top: 100px;
+     margin-bottom: 0px;
+     color: white;
+     text-shadow: 2px 2px 4px #fff;
 }
 
 p {
@@ -28,8 +40,8 @@ p {
 
 .letters {
      display: inline-block;
-     width: 30px;
-     height: 30px;
+     width: 50px;
+     height: 50px;
      margin-right: 2px;
      text-align: center;
 }
@@ -42,16 +54,24 @@ p {
      display: none;
 }
 
+.main-letter-title {
+     color: #e53935;
+     font-size: 25px;
+}
+
 .wrapper, .words-wrapper {
      width: 800px;
-     margin: 0 auto;
-     background-color: aqua;
+     background-color: rgba(255, 255, 255, 0.15);
      padding: 20px;
      position: relative;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
 }
 
 .wrapper {
      display: none;
+     width: 1200px;
 }
 
 .words-wrapper {
@@ -59,46 +79,70 @@ p {
 }
 
 .custom-words, .btn-play, .btn-add-word {
-     padding: 10px 15px;
+     padding: 20px 30px;
      margin-right: 15px;
+     font-size: 20px;
 }
 
 .btn-add-word {
-     background-color: #4169E1;
+     background-color: #1976d2;
      color: black;
      border: 0;
+     border-bottom: solid 5px #1a237e;
 }
 
 .btn-play {
      margin-right: 0;
-     background-color: #FF0000;
+     background-color: #ff9800;
      color: white;
      border: 0;
+     border-bottom: solid 5px #ff6f00;
+}
+
+.btn-start {
+     padding: 20px 30px;
+     background-color: #e53935;
+     border: 0;
+     border-bottom: solid 5px #7f0000;
+     font-size: 20px;
+     margin-top: 20px;
+     position: relative;
+     left: 50%;
+     transform: translateX(-50%);
+}
+
+.btn-add-word, .btn-play, .btn-start {
+     transition: background-color .3s;
+     border-radius: 5px;
+     text-transform: uppercase;
 }
 
 .btn-play:hover {
-     background-color: #800000;
+     background-color: #e65100;
 }
 
 .btn-add-word:hover {
-     background-color: #4B0082;
+     background-color: #0d47a1;
 }
 
-.btn-add-word:hover, .btn-play:hover {
+.btn-start:hover {
+     background-color: #b71c1c;
+}
+
+.btn-add-word:hover, .btn-play:hover, .btn-start:hover {
      cursor: pointer;
 }
 
 .attemps-left {
      width: 100px;
      height: 100px;
-     background-color: yellow;
+     background-color: #b3e5fc;
      border-radius: 100px;
      position: absolute;
      top: -50px;
      left: 50%;
      transform: translateX(-50%);
      text-align: center;
-     border: solid 3px red;
 }
 
 .attemps-left__number {
@@ -116,14 +160,12 @@ p {
 
 .wrapper__float-left {
      float: left;
-     background-color: lightgreen;
      text-align: center;
      padding: 20px;
 }
 
 .wrapper__float-right {
      float: right;
-     background-color: orange;
 }
 
 .hangman {
@@ -132,7 +174,7 @@ p {
 }
 
 .hangman__hangman-0, .hangman__hangman-1, .hangman__hangman-2, .hangman__hangman-3, .hangman__hangman-4, .hangman__hangman-5 {
-     background-color: black;
+     background-color: white;
 }
 
 .hangman__hangman-0 {
@@ -188,19 +230,4 @@ p {
      display: inline-block;
      width: 35px;
      height: 35px;
-}
-
-.start {
-     padding: 10px 20px;
-     background-color: orange;
-     border: none;
-     font-size: 20px;
-     margin-top: 20px;
-     position: relative;
-     left: 50%;
-     transform: translateX(-50%);
-}
-
-.start:hover {
-     cursor: pointer;
 }

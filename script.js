@@ -9,7 +9,7 @@ var score = 0;
 
 
 
-document.querySelector('.start').addEventListener('click', function() {
+document.querySelector('.btn-start').addEventListener('click', function() {
      if (gameIsRuning === false) {
           //alert(randomWord);
           gameIsRuning = true;
