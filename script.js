@@ -48,7 +48,7 @@ document.querySelector('.btn-start').addEventListener('click', function() {
 
 document.querySelector('.main-letter').addEventListener('change', function() {
      var randomWordLowerCase = randomWord.toLowerCase();
-     var characterInRandomWord = randomWordLowerCase.split(this.value);
+     var characterInRandomWord = randomWordLowerCase.split(this.value.toLowerCase());
      var containsNumber = characterInRandomWord.length - 1;
      var enteredCharacter = this.value.toLowerCase();
      var isEntered = enteredCharacters.indexOf(this.value.toLowerCase()) > -1;
@@ -103,6 +103,7 @@ document.querySelector('.main-letter').addEventListener('change', function() {
                if (numCharacterInWord === randomWord.length) {
                     alert('Congrats! You completed this word! Proceed to the next round.');
                     numCharacterInWord = 0;
+                    enteredCharacters = [];
                     newRound();
                }
 
