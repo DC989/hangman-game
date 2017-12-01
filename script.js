@@ -11,6 +11,9 @@ var samoglasnici = ['a', 'e', 'i', 'o', 'u'];
 var suglasnici = ['b', 'c', 'č', 'ć', 'd', 'dž', 'đ', 'f', 'g', 'h', 'j', 'k', 'l', 'lj', 'm', 'n', 'nj', 'p', 'r', 's', 'š', 't', 'v', 'z', 'ž'];
 
 
+var enteredCharacters = [];
+
+
 
 document.querySelector('.btn-start').addEventListener('click', function() {
      if (gameIsRuning === false) {
@@ -44,17 +47,27 @@ document.querySelector('.btn-start').addEventListener('click', function() {
 
 
 document.querySelector('.main-letter').addEventListener('change', function() {
+     var randomWordLowerCase = randomWord.toLowerCase();
+     var characterInRandomWord = randomWordLowerCase.split(this.value);
+     var containsNumber = characterInRandomWord.length - 1;
+     var enteredCharacter = this.value.toLowerCase();
+     var isEntered = enteredCharacters.indexOf(this.value.toLowerCase()) > -1;
+
      if (attemptsLeft > 0) {
 
-          var randomWordLowerCase = randomWord.toLowerCase();
-          var characterInRandomWord = randomWordLowerCase.split(this.value);
-          var containsNumber = characterInRandomWord.length - 1;
-          var enteredCharacter = this.value.toLowerCase();
-
+          // Check if player forgot to enter the character
           if (this.value === '') {
                alert('You forgot to enter a letter!');
                return;
           }
+
+          // Check if player already entered this character
+          if (isEntered) {
+               alert('You already entered this character! Try another one.');
+               return;
+          }
+
+          enteredCharacters.push(this.value.toLowerCase());
 
           if (randomWord.toLowerCase().includes(enteredCharacter)) {
 
