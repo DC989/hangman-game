@@ -1,4 +1,4 @@
-var words = ['hangman', 'soccer', 'laptop', 'paper', 'mouse'];
+var words = ['hangman'];
 var randomNumber = Math.floor(Math.random() * words.length);
 var randomWord = words[randomNumber];
 var attemptsLeft = 6;
