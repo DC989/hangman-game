@@ -1,4 +1,4 @@
-var words = ['Soccer', 'Basketball', 'Computer', 'Science', 'Mouse'];
+var words = ['hangman', 'soccer', 'laptop', 'paper', 'mouse'];
 var randomNumber = Math.floor(Math.random() * words.length);
 var randomWord = words[randomNumber];
 var attemptsLeft = 6;
@@ -15,6 +15,10 @@ var gameScores = {
      listOfScoresByWords: [],
      completedWords: []
 }
+var profileNames = [];
+
+pushWordsToLocal();
+pushProfileNamesToLocal();
 
 
 
@@ -116,7 +120,7 @@ document.querySelector('.main-letter').addEventListener('change', function() {
                               lastRound();
                          } else {
                               words.splice(randomNumber, 1);
-                              alert('Congratulations! You guessed all the words.');
+                              alert('Congratulations! You guessed all the words. You won the game!');
                          }
                     }
 
@@ -140,13 +144,14 @@ document.querySelector('.main-letter').addEventListener('change', function() {
 
 
 
-document.querySelector('.btn-add-word').addEventListener('click', function() {
-     var customWord = document.querySelector('.custom-words').value;
+document.querySelector('#btn-add-word--js').addEventListener('click', function() {
+     var customWord = document.querySelector('#custom-words--js').value.toLowerCase();
      var arrContainsWord = words.indexOf(customWord) > -1;
      if (customWord !== '') {
           //check if words array already has entered words
           if (!(arrContainsWord)) {
                words.push(customWord);
+               pushWordsToLocal();
                alert('Awesome! Your word has been added.');
           } else {
                alert('The Hangman Game already contains this word. Try different word.');
@@ -158,10 +163,31 @@ document.querySelector('.btn-add-word').addEventListener('click', function() {
 
 
 
-document.querySelector('.btn-play').addEventListener('click', function() {
-     document.querySelector('.words-wrapper').style.display = 'none';
-     document.querySelector('.wrapper').style.display = 'block';
-     document.querySelector('.score-wrapper').style.display = 'block';
+document.querySelector('#btn-play--js').addEventListener('click', function() {
+     if (!(words.length < 1)) {
+          document.querySelector('.words-wrapper').style.display = 'none';
+          document.querySelector('.wrapper').style.display = 'block';
+          document.querySelector('.score-wrapper').style.display = 'block';
+     } else {
+          alert('There are no words in the Hangman Game, add some.');
+     }
+});
+
+
+
+document.querySelector('#btn-add-name--js').addEventListener('click', function() {
+     var customName = document.querySelector('#custom-name--js').value;
+     if (!(customName === '')) {
+          if (!(profileNames.indexOf(customName.toUpperCase()) > -1)) {
+               profileNames.push(customName.toUpperCase());
+               pushProfileNamesToLocal();
+               alert('Hi ' + customName.toUpperCase() + ', your name has been added to a game!');
+          } else {
+               alert('Your name is already in the game!');
+          }
+     } else {
+          alert('You forgot to enter the name!');
+     }
 });
 
 
@@ -202,9 +228,22 @@ function lastRound() {
 
 
 
-// TO DO
+function pushWordsToLocal() {
+     var JSONWords = JSON.stringify(words);
+     localStorage.setItem('gameWords', JSONWords);
+}
+
+function pushProfileNamesToLocal() {
+     var JSONNames = JSON.stringify(profileNames);
+     localStorage.setItem('gameProfileNames', JSONNames);
+}
+
+
+
+// ---------------TO DO---------------
 // napraviti da se kreira profil igraca
+// sacuvati unete reci u local storage-u
+// sacuvati profile u local storage-u
 // pamtiti score na odredjenoj reci koju je pogadjao---DONE
 // pamtiti ukupan score dok se nije obesio ili kompletirao sve reci---DONE
-// sacuvati u local storage-u
-// pamtiti vreme koje za koje je user zavrsio igru
+// pamtiti vreme za koje koje je user zavrsio igru

@@ -131,13 +131,18 @@ p {
      font-style: italic;
 }
 
-.custom-words, .btn-play, .btn-add-word {
+.custom-words, .btn-play, .btn-add-word, .btn-add-name {
      padding: 20px 30px;
      margin-right: 15px;
      font-size: 20px;
 }
 
-.btn-add-word {
+.custom-name {
+     margin-bottom: 50px;
+     margin-right: 15px;
+}
+
+.btn-add-word, .btn-add-name {
      background-color: #1976d2;
      color: black;
      border: 0;
@@ -166,7 +171,7 @@ p {
      transform: translateX(-50%);
 }
 
-.btn-add-word, .btn-play, .btn-start {
+.btn-add-word, .btn-play, .btn-start, .btn-add-name {
      transition: background-color .3s;
      border-radius: 5px;
      text-transform: uppercase;
@@ -177,7 +182,7 @@ p {
      background-color: #e65100;
 }
 
-.btn-add-word:hover {
+.btn-add-word:hover, .btn-add-name:hover {
      background-color: #0d47a1;
 }
 
@@ -185,7 +190,7 @@ p {
      background-color: #b71c1c;
 }
 
-.btn-add-word:hover, .btn-play:hover, .btn-start:hover {
+.btn-add-word:hover, .btn-play:hover, .btn-start:hover, .btn-add-name:hover {
      cursor: pointer;
 }
 
