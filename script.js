@@ -241,9 +241,9 @@ function pushProfileNamesToLocal() {
 
 
 // ---------------TO DO---------------
-// napraviti da se kreira profil igraca
-// sacuvati unete reci u local storage-u
-// sacuvati profile u local storage-u
+// napraviti da se kreira profil igraca---DONE
+// sacuvati unete reci u local storage-u---DONE
+// sacuvati profile u local storage-u---DONE
 // pamtiti score na odredjenoj reci koju je pogadjao---DONE
 // pamtiti ukupan score dok se nije obesio ili kompletirao sve reci---DONE
 // pamtiti vreme za koje koje je user zavrsio igru
