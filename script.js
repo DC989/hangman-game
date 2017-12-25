@@ -19,14 +19,15 @@ var gameScores = {
 var profileNames = [];
 var profileNamesObjects = [];
 
-
-
 var gamesPlayed = 0;
+var customName;
+
 var startTimeCurrentGame;
 var endTimeCurrentGame;
 var totalTimeCurrentGame;
 
-var customName;
+var completedWords = [];
+
 
 document.querySelector('#btn-play--js').style.display = 'none';
 
@@ -124,16 +125,18 @@ document.querySelector('.main-letter').addEventListener('change', function() {
 
                          if (words.length > 2) {
                               alert('Congrats! You completed this word! Proceed to the next round.');
+                              completedWords.push(randomWord);
                               newRound();
                          } else if (words.length > 1) {
                               alert('Proceed to the last round!');
+                              completedWords.push(randomWord);
                               lastRound();
                          } else {
                               words.splice(randomNumber, 1);
                               endTimeCurrentGame = new Date().getTime();
                               totalTimeCurrentGame = endTimeCurrentGame - startTimeCurrentGame;
                               alert('Congratulations! You guessed all the words. You won the game! Your time for completing the game is ' + timeToMinutes(totalTimeCurrentGame) + '.');
-
+                              completedWords.push(randomWord);
                             updateUserLocalStorage(customName);
 
                          }
@@ -153,9 +156,11 @@ document.querySelector('.main-letter').addEventListener('change', function() {
           }
      } else {
         endTimeCurrentGame = new Date().getTime();
+        totalTimeCurrentGame = endTimeCurrentGame - startTimeCurrentGame;
         alert('You run out of attempts. Game Over!');
         alert('Your score is ' + gameScores.score);
         alert('Your time for completing the game is ' + timeToMinutes(totalTimeCurrentGame) + '.');
+        updateUserLocalStorage(customName);
      }
 });
 
@@ -176,26 +181,6 @@ document.querySelector('#btn-play--js').addEventListener('click', function() {
       }
 });
 
-/*
-document.querySelector('#btn-add-name--js').addEventListener('click', function() {
-     var customName = document.querySelector('#custom-name--js').value.toUpperCase();
-     if (!(customName === '')) {
-          // Update names in array of names
-          if (!(profileNames.indexOf(customName) > -1)) {
-               profileNames.push(customName);
-               //alert('Hi ' + customName + ', your name has been added to the game!');
-          } else {
-               alert('You already added this name!');
-          }
-          // Update names in localStorage
-          //pushProfileNamesToLocal(customName);
-          pushToLocalStorage('gameProfileNames', profileNames, customName);
-     } else {
-          alert('You forgot to enter the name!');
-     }
-});
-*/
-
 document.querySelector('#btn-add-name--js').addEventListener('click', function() {
     var customNameToLower = document.querySelector('#custom-name--js').value.toLowerCase();
     var customNameToUpper = document.querySelector('#custom-name--js').value.toUpperCase();
@@ -203,9 +188,10 @@ document.querySelector('#btn-add-name--js').addEventListener('click', function()
         if (localStorage.getItem(customNameToUpper) === null) {
             var player = {
                 name: customNameToLower,
+                gameCounter: 0,
                 games: [],
                 totalScore: 0,
-                timePlayed: ''
+                timePlayed: 0
             };
             var toString = JSON.stringify(player);
             localStorage.setItem(customNameToUpper, toString);
@@ -219,8 +205,6 @@ document.querySelector('#btn-add-name--js').addEventListener('click', function()
          alert('You forgot to enter the name!');
     }
 });
-
-
 
 document.querySelector('#btn-add-word--js').addEventListener('click', function() {
     var customWord = document.querySelector('#custom-words--js').value.toLowerCase();
@@ -260,45 +244,20 @@ function pushToLocalStorage(key, arr, item) {
 function updateUserLocalStorage(key) {
     var retriveData = localStorage.getItem(key);
     var toObject = JSON.parse(retriveData);
-    toObject.totalScore += gameScores.score;
+    var newGame = {};
+
+    newGame.name = 'Game ' + toObject.gameCounter;
+    newGame.words = completedWords;
+    newGame.score = gameScores.score;
+    newGame.time = totalTimeCurrentGame;
+
+    toObject.games.push(newGame);
+    toObject.gameCounter++;
+
+    toObject.totalScore += (gameScores.score);
+    toObject.timePlayed += totalTimeCurrentGame;
     localStorage.setItem(key, JSON.stringify(toObject));
 }
-
-/*
-function pushProfileNamesToLocal(name) {
-     if (localStorage.getItem('gameProfileNames') === null) {
-          var profileNamesToString = JSON.stringify(profileNames);
-          localStorage.setItem('gameProfileNames', profileNamesToString);
-     } else {
-          var retriveProfileNames = localStorage.getItem('gameProfileNames');
-          var profileNamesToArray = JSON.parse(retriveProfileNames);
-
-          if (profileNamesToArray.indexOf(name) > -1) {
-               alert('This name is already in the local storage!');
-          } else {
-               profileNamesToArray.push(name);
-               localStorage.setItem('gameProfileNames', JSON.stringify(profileNamesToArray));
-          }
-     }
-}
-
-function pushWordsToLocal(word) {
-     if (localStorage.getItem('gameWords') === null) {
-          var wordsToString = JSON.stringify(words);
-          localStorage.setItem('gameWords', wordsToString);
-     } else {
-          var retriveWords = localStorage.getItem('gameWords');
-          var wordsToArray = JSON.parse(retriveWords);
-
-          if (wordsToArray.indexOf(word) > -1) {
-               alert('This word is already in local storage!');
-          } else {
-               wordsToArray.push(word);
-               localStorage.setItem('gameWords', JSON.stringify(wordsToArray));
-          }
-     }
-}
-*/
 
 function generateWord() {
      randomNumber = Math.floor(Math.random() * words.length);
@@ -340,14 +299,3 @@ function timeToMinutes(millis) {
      var seconds = ((millis % 60000) / 1000).toFixed(0);
      return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
-
-
-
-
-// ---------------TO DO---------------
-// napraviti da se kreira profil igraca---DONE
-// sacuvati unete reci u local storage-u---DONE
-// sacuvati profile u local storage-u---DONE
-// pamtiti score na odredjenoj reci koju je pogadjao---DONE
-// pamtiti ukupan score dok se nije obesio ili kompletirao sve reci---DONE
-// pamtiti vreme za koje koje je user zavrsio igru---DONE
